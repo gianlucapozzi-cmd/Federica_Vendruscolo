@@ -1,0 +1,144 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gym floor gradient -->
+    <linearGradient id="gymFloor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2C2C2C;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#1A1A1A;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#0F0F0F;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <!-- Equipment shadows -->
+    <radialGradient id="equipmentShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.8" />
+    </radialGradient>
+    
+    <!-- Lighting -->
+    <radialGradient id="gymLight" cx="30%" cy="20%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.1" />
+      <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.05" />
+      <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Gym floor -->
+  <rect width="100%" height="100%" fill="url(#gymFloor)"/>
+  
+  <!-- Gym lighting -->
+  <rect width="100%" height="100%" fill="url(#gymLight)"/>
+  
+  <!-- Gym floor pattern -->
+  <pattern id="floorPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+    <rect width="200" height="200" fill="#1A1A1A"/>
+    <rect x="0" y="0" width="200" height="2" fill="#333333" opacity="0.3"/>
+    <rect x="0" y="0" width="2" height="200" fill="#333333" opacity="0.3"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#floorPattern)" opacity="0.4"/>
+  
+  <!-- Large gym equipment silhouettes -->
+  
+  <!-- Power rack -->
+  <g opacity="0.6">
+    <rect x="200" y="200" width="8" height="400" fill="#444444"/>
+    <rect x="200" y="200" width="200" height="8" fill="#444444"/>
+    <rect x="400" y="200" width="8" height="400" fill="#444444"/>
+    <rect x="200" y="592" width="208" height="8" fill="#444444"/>
+    <!-- Safety bars -->
+    <rect x="220" y="300" width="168" height="4" fill="#666666"/>
+    <rect x="220" y="450" width="168" height="4" fill="#666666"/>
+  </g>
+  
+  <!-- Dumbbell rack -->
+  <g opacity="0.5">
+    <rect x="800" y="300" width="300" height="20" fill="#555555"/>
+    <rect x="820" y="280" width="20" height="60" fill="#555555"/>
+    <rect x="1060" y="280" width="20" height="60" fill="#555555"/>
+    <!-- Dumbbells on rack -->
+    <ellipse cx="850" cy="320" rx="25" ry="8" fill="#777777"/>
+    <ellipse cx="900" cy="320" rx="25" ry="8" fill="#777777"/>
+    <ellipse cx="950" cy="320" rx="25" ry="8" fill="#777777"/>
+    <ellipse cx="1000" cy="320" rx="25" ry="8" fill="#777777"/>
+    <ellipse cx="1050" cy="320" rx="25" ry="8" fill="#777777"/>
+  </g>
+  
+  <!-- Cable machine -->
+  <g opacity="0.4">
+    <rect x="1400" y="150" width="15" height="500" fill="#666666"/>
+    <rect x="1200" y="150" width="215" height="15" fill="#666666"/>
+    <rect x="1200" y="150" width="15" height="200" fill="#666666"/>
+    <!-- Cable lines -->
+    <line x1="1300" y1="200" x2="1600" y2="400" stroke="#888888" stroke-width="3" opacity="0.6"/>
+    <line x1="1300" y1="250" x2="1600" y2="450" stroke="#888888" stroke-width="3" opacity="0.6"/>
+    <line x1="1300" y1="300" x2="1600" y2="500" stroke="#888888" stroke-width="3" opacity="0.6"/>
+  </g>
+  
+  <!-- Bench press -->
+  <g opacity="0.5">
+    <rect x="600" y="500" width="150" height="8" fill="#555555"/>
+    <rect x="650" y="480" width="8" height="40" fill="#555555"/>
+    <rect x="600" y="480" width="150" height="8" fill="#555555"/>
+    <!-- Weight plates -->
+    <circle cx="580" cy="504" r="15" fill="#777777"/>
+    <circle cx="770" cy="504" r="15" fill="#777777"/>
+    <circle cx="570" cy="504" r="12" fill="#999999"/>
+    <circle cx="780" cy="504" r="12" fill="#999999"/>
+  </g>
+  
+  <!-- Cardio equipment -->
+  <g opacity="0.3">
+    <!-- Treadmill -->
+    <rect x="100" y="700" width="200" height="100" rx="10" fill="#444444"/>
+    <rect x="120" y="720" width="160" height="60" fill="#222222"/>
+    <rect x="130" y="730" width="140" height="40" fill="#111111"/>
+    
+    <!-- Elliptical -->
+    <rect x="400" y="700" width="150" height="80" rx="8" fill="#444444"/>
+    <circle cx="450" cy="740" r="30" fill="#333333"/>
+    <circle cx="500" cy="740" r="30" fill="#333333"/>
+  </g>
+  
+  <!-- Mirrors on wall -->
+  <g opacity="0.2">
+    <rect x="0" y="0" width="1920" height="200" fill="#111111"/>
+    <rect x="50" y="50" width="1800" height="100" fill="#222222"/>
+    <rect x="100" y="70" width="1700" height="60" fill="#333333"/>
+  </g>
+  
+  <!-- Gym lighting fixtures -->
+  <g opacity="0.4">
+    <rect x="300" y="50" width="200" height="20" fill="#555555"/>
+    <rect x="800" y="50" width="200" height="20" fill="#555555"/>
+    <rect x="1300" y="50" width="200" height="20" fill="#555555"/>
+    <!-- Light beams -->
+    <rect x="350" y="70" width="100" height="300" fill="#FFFFFF" opacity="0.1"/>
+    <rect x="850" y="70" width="100" height="300" fill="#FFFFFF" opacity="0.1"/>
+    <rect x="1350" y="70" width="100" height="300" fill="#FFFFFF" opacity="0.1"/>
+  </g>
+  
+  <!-- Windows -->
+  <g opacity="0.3">
+    <rect x="0" y="300" width="50" height="400" fill="#000033"/>
+    <rect x="1870" y="300" width="50" height="400" fill="#000033"/>
+    <!-- Window reflections -->
+    <rect x="10" y="320" width="30" height="360" fill="#FFFFFF" opacity="0.05"/>
+    <rect x="1880" y="320" width="30" height="360" fill="#FFFFFF" opacity="0.05"/>
+  </g>
+  
+  <!-- Equipment shadows -->
+  <ellipse cx="300" cy="650" rx="100" ry="20" fill="url(#equipmentShadow)"/>
+  <ellipse cx="900" cy="650" rx="150" ry="20" fill="url(#equipmentShadow)"/>
+  <ellipse cx="1400" cy="650" rx="120" ry="20" fill="url(#equipmentShadow)"/>
+  
+  <!-- Subtle dust particles -->
+  <g opacity="0.1">
+    <circle cx="200" cy="300" r="1" fill="#FFFFFF"/>
+    <circle cx="500" cy="400" r="1" fill="#FFFFFF"/>
+    <circle cx="800" cy="200" r="1" fill="#FFFFFF"/>
+    <circle cx="1200" cy="500" r="1" fill="#FFFFFF"/>
+    <circle cx="1600" cy="300" r="1" fill="#FFFFFF"/>
+    <circle cx="300" cy="600" r="1" fill="#FFFFFF"/>
+    <circle cx="700" cy="700" r="1" fill="#FFFFFF"/>
+    <circle cx="1100" cy="800" r="1" fill="#FFFFFF"/>
+  </g>
+</svg>
+
