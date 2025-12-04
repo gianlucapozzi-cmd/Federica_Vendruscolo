@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  outputFileTracingRoot: __dirname,
+  outputFileTracingRoot: require('path').join(__dirname),
   images: {
     domains: ['localhost'],
     formats: ['image/webp', 'image/avif'],
