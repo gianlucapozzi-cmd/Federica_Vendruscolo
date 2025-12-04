@@ -36,7 +36,11 @@ export const metadata: Metadata = {
     title: 'Federica Vendruscolo PT | Allenamenti Funzionali Online per Donne',
     description: 'Trasforma il tuo corpo con programmi di allenamento funzionale personalizzati.',
   },
-  viewport: 'width=device-width, initial-scale=1',
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
   themeColor: '#e2a9f1',
 }
 
