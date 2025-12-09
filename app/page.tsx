@@ -10,7 +10,7 @@ import { ScrollProgressBar } from '@/components/ScrollAnimations'
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden w-full">
       <ScrollProgressBar />
       <HeroSection />
       <AboutSection />
