@@ -66,7 +66,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-8 text-left sm:text-center"
+          className="mb-8"
         >
           {/* Logo */}
           <div className="mb-6">
