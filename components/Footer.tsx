@@ -45,24 +45,6 @@ export default function Footer() {
               >
                 Privacy Policy
               </button>
-              <button
-                onClick={() => {
-                  // Open cookie policy modal or page
-                  alert('Cookie Policy - Qui si aprirebbe la policy')
-                }}
-                className="text-gray-600 hover:text-primary transition-colors duration-200 underline-offset-4 hover:underline"
-              >
-                Cookie Policy
-              </button>
-              <button
-                onClick={() => {
-                  // Open terms and conditions modal or page
-                  alert('Termini e Condizioni - Qui si aprirebbero i termini')
-                }}
-                className="text-gray-600 hover:text-primary transition-colors duration-200 underline-offset-4 hover:underline"
-              >
-                Termini e Condizioni
-              </button>
             </div>
           </div>
 
