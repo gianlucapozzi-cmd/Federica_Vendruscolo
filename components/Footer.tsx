@@ -28,7 +28,7 @@ export default function Footer() {
             </div>
             
             <h3 className="text-xl font-bold font-heading text-secondary mb-4">
-              © 2024 Federica Vendruscolo - Personal Trainer
+              Federica Vendruscolo - Personal Trainer
             </h3>
             
             {/* Links */}
