@@ -27,12 +27,9 @@ export default function Footer() {
               />
             </div>
             
-            <h3 className="text-xl font-bold font-heading text-secondary mb-2">
+            <h3 className="text-xl font-bold font-heading text-secondary mb-4">
               © 2024 Federica Vendruscolo - Personal Trainer
             </h3>
-            <p className="text-gray-600 mb-4">
-              Trasforma il tuo corpo con allenamenti funzionali personalizzati
-            </p>
             
             {/* Links */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm">
