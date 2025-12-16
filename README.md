@@ -36,12 +36,19 @@ Una landing page moderna e ottimizzata per conversioni per Federica Vendruscolo,
    npm install
    ```
 
-3. **Avvia il server di sviluppo**
+3. **Configura le variabili d'ambiente**
+   Crea un file `.env.local` nella root del progetto:
+   ```env
+   N8N_WEBHOOK_URL=https://your-n8n-instance.com/webhook/your-webhook-id
+   ```
+   > **Nota**: Vedi `N8N_SETUP.md` per istruzioni dettagliate su come configurare N8n e ottenere l'URL del webhook.
+
+4. **Avvia il server di sviluppo**
    ```bash
    npm run dev
    ```
 
-4. **Apri il browser**
+5. **Apri il browser**
    Naviga su [http://localhost:3000](http://localhost:3000)
 
 ## 🎨 Personalizzazione
@@ -84,6 +91,8 @@ Tutti i testi sono definiti nei componenti individuali e possono essere facilmen
 - Stati di caricamento e feedback
 - Messaggi di successo/errore
 - Campi obbligatori con indicazioni visive
+- **Integrazione N8n**: I dati del form vengono inviati automaticamente a N8n tramite webhook
+- **Google Sheets**: Configura N8n per salvare i dati su Google Sheets (vedi `N8N_SETUP.md`)
 
 ### Carousel Testimonianze
 - Navigazione con frecce e dots
@@ -116,6 +125,28 @@ npm run lint     # Linting del codice
 - Focus states visibili
 - ARIA labels appropriati
 
+## 🔗 Integrazione N8n e Google Sheets
+
+Il form di contatto è integrato con N8n per automatizzare il salvataggio dei dati su Google Sheets.
+
+### Setup Rapido
+
+1. **Configura N8n**: Segui la guida completa in `N8N_SETUP.md`
+2. **Ottieni l'URL del webhook** dal workflow N8n
+3. **Aggiungi la variabile d'ambiente**:
+   ```env
+   N8N_WEBHOOK_URL=https://tuo-n8n-instance.com/webhook/tuo-webhook-id
+   ```
+4. **Per produzione**: Aggiungi la variabile anche nelle impostazioni del tuo provider di hosting (es: Vercel)
+
+### Documentazione Completa
+
+Vedi `N8N_SETUP.md` per:
+- Configurazione passo-passo di N8n
+- Setup Google Sheets
+- Troubleshooting
+- Esempi di workflow avanzati
+
 ## 🚀 Deploy
 
 ### Vercel (Raccomandato)
@@ -123,6 +154,11 @@ npm run lint     # Linting del codice
 npm run build
 # Deploy automatico con Vercel CLI
 ```
+
+**Importante**: Ricorda di aggiungere la variabile `N8N_WEBHOOK_URL` nelle impostazioni di Vercel:
+1. Vai su Vercel Dashboard → Il tuo progetto → Settings → Environment Variables
+2. Aggiungi `N8N_WEBHOOK_URL` con il valore del tuo webhook N8n
+3. Riavvia il deployment
 
 ### Altri provider
 ```bash

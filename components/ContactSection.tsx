@@ -47,15 +47,32 @@ export default function ContactSection() {
     setSubmitStatus('idle')
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      console.log('📤 Invio form con dati:', data)
       
-      // Here you would typically send the data to your backend
-      console.log('Form data:', data)
+      // Invia i dati all'API route che li passerà a N8n
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      console.log('📥 Risposta API - Status:', response.status)
       
+      const result = await response.json()
+      console.log('📥 Risposta API - Body:', result)
+
+      if (!response.ok) {
+        console.error('❌ Errore API:', result.error, result.details)
+        throw new Error(result.error || result.details || 'Errore durante l\'invio')
+      }
+      
+      console.log('✅ Form inviato con successo')
       setSubmitStatus('success')
       reset()
     } catch (error) {
+      console.error('❌ Errore invio form:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
