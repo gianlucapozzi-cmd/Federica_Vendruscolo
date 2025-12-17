@@ -5,6 +5,7 @@ import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useRouter } from 'next/navigation'
 import { 
   UserIcon,
   EnvelopeIcon,
@@ -30,6 +31,7 @@ type ContactFormData = z.infer<typeof contactSchema>
 export default function ContactSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
+  const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -69,8 +71,8 @@ export default function ContactSection() {
       }
       
       console.log('✅ Form inviato con successo')
-      setSubmitStatus('success')
-      reset()
+      // Redirect alla pagina di ringraziamento
+      router.push('/thank-you')
     } catch (error) {
       console.error('❌ Errore invio form:', error)
       setSubmitStatus('error')
@@ -291,17 +293,6 @@ export default function ContactSection() {
               </motion.button>
 
               {/* Status Messages */}
-              {submitStatus === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800"
-                >
-                  <CheckCircleIcon className="w-5 h-5" />
-                  <span>Richiesta inviata con successo! Ti contatterò entro 24 ore. Controlla anche lo spam!</span>
-                </motion.div>
-              )}
-
               {submitStatus === 'error' && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
