@@ -80,6 +80,9 @@ export default function RootLayout({
         </noscript>
         {/* End Meta Pixel Code */}
         
+        {/* Facebook Domain Verification */}
+        <meta name="facebook-domain-verification" content="lh4rpbqq322hqyubz5ekophyay1bvh" />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" href="/Logo Fede.png" type="image/png" />
