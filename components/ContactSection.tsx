@@ -254,16 +254,13 @@ export default function ContactSection() {
                 />
                 <label htmlFor="privacy" className="text-sm text-gray-600">
                   Accetto la{' '}
-                  <button
-                    type="button"
-                    className="text-primary hover:underline"
-                    onClick={() => {
-                      // Open privacy policy modal or page
-                      alert('Privacy Policy - Qui si aprirebbe la policy')
-                    }}
+                  <a
+                    href="https://www.iubenda.com/privacy-policy/88815874"
+                    className="iubenda-white iubenda-noiframe iubenda-embed text-primary hover:underline"
+                    title="Privacy Policy"
                   >
                     Privacy Policy
-                  </button>
+                  </a>
                   {' '}e autorizzo il trattamento dei miei dati personali *
                 </label>
               </div>

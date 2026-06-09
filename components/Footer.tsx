@@ -33,15 +33,20 @@ export default function Footer() {
             
             {/* Links */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm">
-              <button
-                onClick={() => {
-                  // Open privacy policy modal or page
-                  alert('Privacy Policy - Qui si aprirebbe la policy')
-                }}
-                className="text-gray-600 hover:text-primary transition-colors duration-200 underline-offset-4 hover:underline"
+              <a
+                href="https://www.iubenda.com/privacy-policy/88815874"
+                className="iubenda-white iubenda-noiframe iubenda-embed text-gray-600 hover:text-primary transition-colors duration-200 underline-offset-4 hover:underline"
+                title="Privacy Policy"
               >
                 Privacy Policy
-              </button>
+              </a>
+              <a
+                href="https://www.iubenda.com/privacy-policy/88815874/cookie-policy"
+                className="iubenda-white iubenda-noiframe iubenda-embed text-gray-600 hover:text-primary transition-colors duration-200 underline-offset-4 hover:underline"
+                title="Cookie Policy"
+              >
+                Cookie Policy
+              </a>
             </div>
           </div>
 

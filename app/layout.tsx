@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Inter, Montserrat } from 'next/font/google'
 import './globals.css'
 import { SmoothScrollProvider } from '@/components/ScrollAnimations'
@@ -93,6 +94,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Federica Vendruscolo PT" />
       </head>
       <body className={`${inter.className} antialiased`}>
+        <Script src="https://cdn.iubenda.com/iubenda.js" strategy="lazyOnload" />
         <LoadingScreen />
         <SmoothScrollProvider>
           {children}
