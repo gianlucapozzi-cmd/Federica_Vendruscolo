@@ -95,6 +95,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <Script src="https://cdn.iubenda.com/iubenda.js" strategy="lazyOnload" />
+        <Script src="https://embeds.iubenda.com/widgets/44319dd4-69c1-4e43-b406-ce05904066b9.js" strategy="lazyOnload" />
         <LoadingScreen />
         <SmoothScrollProvider>
           {children}
