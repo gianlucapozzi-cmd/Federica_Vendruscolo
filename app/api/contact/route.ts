@@ -3,6 +3,36 @@ import { NextRequest, NextResponse } from 'next/server'
 const CONTACT_EMAIL =
   process.env.CONTACT_TO_EMAIL || 'vendruscolofederica@gmail.com'
 
+function getSiteUrl(request: NextRequest) {
+  const origin = request.headers.get('origin')
+  if (origin) return origin
+
+  const referer = request.headers.get('referer')
+  if (referer) {
+    try {
+      return new URL(referer).origin
+    } catch {
+      // ignore invalid referer
+    }
+  }
+
+  const host =
+    request.headers.get('x-forwarded-host') || request.headers.get('host')
+  if (host) {
+    const proto = request.headers.get('x-forwarded-proto') || 'https'
+    return `${proto}://${host}`
+  }
+
+  return 'https://federicavendruscolo.pt'
+}
+
+function needsActivation(message: unknown) {
+  return (
+    typeof message === 'string' &&
+    message.toLowerCase().includes('activation')
+  )
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
@@ -15,6 +45,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const siteUrl = getSiteUrl(request)
+
     const response = await fetch(
       `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`,
       {
@@ -22,6 +54,11 @@ export async function POST(request: NextRequest) {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
+          Origin: siteUrl,
+          Referer: `${siteUrl}/`,
+          'User-Agent':
+            request.headers.get('user-agent') ||
+            'Mozilla/5.0 (compatible; FedericaVendruscolo/1.0)',
         },
         body: JSON.stringify({
           Nome: `${firstName} ${lastName}`,
@@ -32,13 +69,18 @@ export async function POST(request: NextRequest) {
           _template: 'table',
           _captcha: 'false',
           _replyto: email,
+          _url: siteUrl,
         }),
       }
     )
 
     const result = await response.json().catch(() => ({}))
+    const activationPending = needsActivation(result.message)
 
-    if (!response.ok || result.success === false || result.success === 'false') {
+    if (
+      !activationPending &&
+      (!response.ok || result.success === false || result.success === 'false')
+    ) {
       console.error('❌ Errore FormSubmit:', response.status, result)
       throw new Error(result.message || `Invio email fallito: ${response.status}`)
     }
@@ -46,7 +88,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: true,
-        message: 'Richiesta inviata con successo',
+        activationPending,
+        message: activationPending
+          ? 'Modulo da attivare: Federica deve confermare la mail di FormSubmit.'
+          : 'Richiesta inviata con successo',
       },
       { status: 200 }
     )

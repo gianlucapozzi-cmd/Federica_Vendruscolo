@@ -28,6 +28,45 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>
 
+const CONTACT_EMAIL = 'vendruscolofederica@gmail.com'
+
+function isActivationMessage(message: unknown) {
+  return typeof message === 'string' && message.toLowerCase().includes('activation')
+}
+
+async function sendViaFormSubmit(data: ContactFormData) {
+  const response = await fetch(
+    `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        Nome: `${data.firstName} ${data.lastName}`,
+        Email: data.email,
+        Telefono: data.phone,
+        Obiettivi: data.goals,
+        _subject: `Nuova consulenza: ${data.firstName} ${data.lastName}`,
+        _template: 'table',
+        _captcha: 'false',
+        _replyto: data.email,
+      }),
+    }
+  )
+
+  const result = await response.json().catch(() => ({}))
+
+  if (isActivationMessage(result.message)) {
+    return
+  }
+
+  if (!response.ok || result.success === false || result.success === 'false') {
+    throw new Error(result.message || 'Invio email fallito')
+  }
+}
+
 export default function ContactSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
@@ -49,9 +88,6 @@ export default function ContactSection() {
     setSubmitStatus('idle')
 
     try {
-      console.log('📤 Invio form con dati:', data)
-      
-      // Invia i dati all'API route, che manda un'email di notifica
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -60,18 +96,10 @@ export default function ContactSection() {
         body: JSON.stringify(data),
       })
 
-      console.log('📥 Risposta API - Status:', response.status)
-      
-      const result = await response.json()
-      console.log('📥 Risposta API - Body:', result)
-
       if (!response.ok) {
-        console.error('❌ Errore API:', result.error, result.details)
-        throw new Error(result.error || result.details || 'Errore durante l\'invio')
+        await sendViaFormSubmit(data)
       }
-      
-      console.log('✅ Form inviato con successo')
-      // Redirect alla pagina di ringraziamento
+
       router.push('/thank-you')
     } catch (error) {
       console.error('❌ Errore invio form:', error)
