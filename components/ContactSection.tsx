@@ -51,7 +51,7 @@ export default function ContactSection() {
     try {
       console.log('📤 Invio form con dati:', data)
       
-      // Invia i dati all'API route che li passerà a N8n
+      // Invia i dati all'API route, che manda un'email di notifica
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {

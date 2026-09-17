@@ -1,4 +1,6 @@
-# Guida alla Configurazione N8n per l'Integrazione con Google Sheets
+# [DEPRECATO] Guida N8n + Google Sheets
+
+Il form ora invia le richieste via email con FormSubmit. Questa guida non è più in uso.
 
 Questa guida ti aiuterà a configurare N8n per ricevere i dati del form di contatto e salvarli automaticamente su Google Sheets.
 
