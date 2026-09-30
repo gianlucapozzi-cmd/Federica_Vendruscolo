@@ -28,41 +28,36 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>
 
-const CONTACT_EMAIL = 'vendruscolofederica@gmail.com'
+const WEB3FORMS_ACCESS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+  '85643c6c-6a6a-49da-ac6d-e0d3ca7eff17'
 
-function isActivationMessage(message: unknown) {
-  return typeof message === 'string' && message.toLowerCase().includes('activation')
-}
+async function sendContactEmail(data: ContactFormData) {
+  if (!WEB3FORMS_ACCESS_KEY) {
+    throw new Error('WEB3FORMS_ACCESS_KEY mancante')
+  }
 
-async function sendViaFormSubmit(data: ContactFormData) {
-  const response = await fetch(
-    `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        Nome: `${data.firstName} ${data.lastName}`,
-        Email: data.email,
-        Telefono: data.phone,
-        Obiettivi: data.goals,
-        _subject: `Nuova consulenza: ${data.firstName} ${data.lastName}`,
-        _template: 'table',
-        _captcha: 'false',
-        _replyto: data.email,
-      }),
-    }
-  )
+  const response = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      access_key: WEB3FORMS_ACCESS_KEY,
+      name: `${data.firstName} ${data.lastName}`,
+      email: data.email,
+      phone: data.phone,
+      message: data.goals,
+      subject: `Nuova consulenza: ${data.firstName} ${data.lastName}`,
+      from_name: 'Sito Federica Vendruscolo PT',
+      botcheck: false,
+    }),
+  })
 
   const result = await response.json().catch(() => ({}))
 
-  if (isActivationMessage(result.message)) {
-    return
-  }
-
-  if (!response.ok || result.success === false || result.success === 'false') {
+  if (!response.ok || !result.success) {
     throw new Error(result.message || 'Invio email fallito')
   }
 }
@@ -88,18 +83,7 @@ export default function ContactSection() {
     setSubmitStatus('idle')
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-
-      if (!response.ok) {
-        await sendViaFormSubmit(data)
-      }
-
+      await sendContactEmail(data)
       router.push('/thank-you')
     } catch (error) {
       console.error('❌ Errore invio form:', error)

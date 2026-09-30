@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server'
 
-const CONTACT_EMAIL =
-  process.env.CONTACT_TO_EMAIL || 'vendruscolofederica@gmail.com'
+const WEB3FORMS_ACCESS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+  '85643c6c-6a6a-49da-ac6d-e0d3ca7eff17'
 
 export async function GET() {
   return NextResponse.json({
-    emailConfigured: true,
-    provider: 'FormSubmit',
-    destination: CONTACT_EMAIL,
+    emailConfigured: Boolean(WEB3FORMS_ACCESS_KEY),
+    provider: 'Web3Forms',
+    destination: 'vendruscolofederica@gmail.com',
     nodeEnv: process.env.NODE_ENV,
     message:
-      'Nessuna API key necessaria. Al primo invio Federica deve confermare l’email di attivazione di FormSubmit (anche in spam).',
+      'Web3Forms è configurato. Le richieste del form arriveranno via email.',
   })
 }

@@ -119,9 +119,7 @@ npm run lint     # Linting del codice
 
 ## ✉️ Invio email del form
 
-Il form invia una email a `vendruscolofederica@gmail.com` tramite FormSubmit. Non servono account, API key né N8n.
-
-Al **primo invio** FormSubmit manda a Federica una mail di attivazione: deve cliccare il link (controllare anche spam). Da quel momento le richieste arrivano normalmente.
+Il form invia una email a `vendruscolofederica@gmail.com` tramite Web3Forms, dal browser. N8n non è più necessario.
 
 ## 🚀 Deploy
 
@@ -131,7 +129,7 @@ npm run build
 # Deploy automatico con Vercel CLI
 ```
 
-Dopo il deploy, fai un invio di prova del form e chiedi a Federica di confermare la mail di FormSubmit.
+Dopo il deploy, fai un invio di prova del form.
 
 ### Altri provider
 ```bash
