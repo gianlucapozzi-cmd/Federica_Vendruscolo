@@ -84,7 +84,9 @@ export default function ContactSection() {
 
     try {
       await sendContactEmail(data)
-      router.push('/thank-you')
+      const isMonitor =
+        new URLSearchParams(window.location.search).get('monitor') === '1'
+      router.push(isMonitor ? '/thank-you?monitor=1' : '/thank-you')
     } catch (error) {
       console.error('❌ Errore invio form:', error)
       setSubmitStatus('error')

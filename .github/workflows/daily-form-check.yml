@@ -1,0 +1,27 @@
+name: Controllo giornaliero form
+
+on:
+  schedule:
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-form:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Installa Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Compila il form sul sito live
+        run: node scripts/daily-form-check.mjs
+        env:
+          SITE_URL: https://federicavendruscolo.it

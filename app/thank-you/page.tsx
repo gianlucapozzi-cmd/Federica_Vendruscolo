@@ -16,7 +16,10 @@ export default function ThankYouPage() {
   const router = useRouter()
 
   useEffect(() => {
-    // Track Lead event in Meta Pixel
+    const isMonitor =
+      new URLSearchParams(window.location.search).get('monitor') === '1'
+    if (isMonitor) return
+
     if (typeof window !== 'undefined' && window.fbq) {
       window.fbq('track', 'Lead', {
         content_name: 'Contact Form Submission',
@@ -24,7 +27,6 @@ export default function ThankYouPage() {
         value: 0.00,
         currency: 'EUR'
       })
-      console.log('✅ Meta Pixel Lead event tracked')
     }
   }, [])
 
